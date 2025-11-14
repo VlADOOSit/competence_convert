@@ -1,0 +1,41 @@
+[
+  {
+    "competency_id": 1,
+    "code": "A.1",
+    "name": "IS and Business Strategy Alignment",
+    "description": "Anticipates long term business requirements, influences improvement of the organisation’s process efficiency and effectiveness. Determines the IS model and enterprise architecture maintaining consistency with organisational policy and ensuring a secure environment. Recognises potential risks and business requirements to assure resilience in the alignment of systems and services to the business strategy. Makes strategic IS policy decisions for the enterprise, including sourcing strategies.",
+    "levels": [
+      {"level_id": 101, "level": 1, "description": "-"},
+      {"level_id": 102, "level": 2, "description": "-"},
+      {"level_id": 103, "level": 3, "description": "-"},
+      {"level_id": 104, "level": 4, "description": "Provides leadership for the construction and implementation of long term innovative IS solutions."},
+      {"level_id": 105, "level": 5, "description": "Provides IS strategic leadership to reach consensus and commitment from the management team of the enterprise."}
+    ]
+  },
+  {
+    "competency_id": 2,
+    "code": "A.2",
+    "name": "Service Level Management",
+    "description": "Defines, validates and makes applicable service level agreements (SLAs) and underpinning contracts tailored to services offered. Negotiates service performance levels taking into account the needs and capacity of stakeholders and business.",
+    "levels": [
+      {"level_id": 201, "level": 1, "description": "-"},
+      {"level_id": 202, "level": 2, "description": "-"},
+      {"level_id": 203, "level": 3, "description": "Ensures the content of the SLA."},
+      {"level_id": 204, "level": 4, "description": "Negotiates revision of SLAs, in accordance with the overall objectives. Ensures the achievement of planned results"},
+      {"level_id": 205, "level": 5, "description": "-"}
+    ]
+  },
+  {
+    "competency_id": 3,
+    "code": "А.3",
+    "name": "Business Plan Development",
+    "description": "Addresses the design and structure of a business or product plan including the identification of alternative approaches as well as return on investment propositions. Considers the possible and applicable sourcing models. Presents cost benefit analysis and reasoned arguments in support of the selected strategy. Ensures compliance with business risk and technology strategies. Communicates and sells business plan to relevant stakeholders and addresses political, financial, and organisational interests.",
+    "levels": [
+      {"level_id": 301, "level": 1, "description": "-"},
+      {"level_id": 302, "level": 2, "description": "-"},
+      {"level_id": 303, "level": 3, "description": "Exploits specialist knowledge to provide analysis of market environment etc."},
+      {"level_id": 304, "level": 4, "description": "Provides leadership for the creation of an information system strategy that meets the requirements of the business (e.g. distributed, mobility-based) and includes risks and opportunities."},
+      {"level_id": 305, "level": 5, "description": "Applies strategic thinking and organisational leadership to exploit the capability of Information Technology to improve or transform the business."}
+    ]
+  }
+]
