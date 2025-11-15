@@ -1,7 +1,6 @@
 import re
 
 def preprocess_text(text: str, max_len: int = 1000) -> str:
-
     if not text:
         return ""
     text = text.strip()

@@ -19,7 +19,6 @@ class BertEmbeddingModel:
         return summed / counts
 
     def embed(self, text: str):
-       
         text = preprocess_text(text)
         encoded = self.tokenizer(text, padding=True, truncation=True, max_length=256, return_tensors="pt")
         encoded = {k: v.to(self.device) for k, v in encoded.items()}
@@ -29,7 +28,6 @@ class BertEmbeddingModel:
         return emb.cpu().numpy().reshape(-1)  
 
     def embed_batch(self, texts):
-       
         processed = [preprocess_text(t) for t in texts]
         encoded = self.tokenizer(processed, padding=True, truncation=True, max_length=256, return_tensors="pt")
         encoded = {k: v.to(self.device) for k, v in encoded.items()}

@@ -6,7 +6,6 @@ from typing import List, Dict
 
 class ECFEmbeddingStore:
     def __init__(self, ecf_json_path: str = "ecf_data.json", model: BertEmbeddingModel = None, alpha: float = 0.7):
-        
         self.path = ecf_json_path
         self.model = model or BertEmbeddingModel()
         self.alpha = alpha
