@@ -1,6 +1,6 @@
 import numpy as np
 import torch
-from transformers import BertTokenizer, BertModel
+from transformers import BertTokenizer, BertModel, AutoModelForSequenceClassification
 from preprocess import preprocess_text
 
 class BertEmbeddingModel:
@@ -35,4 +35,33 @@ class BertEmbeddingModel:
             output = self.model(**encoded)
         emb = self.mean_pooling(output, encoded["attention_mask"])  # (n, dim)
         return emb.cpu().numpy()
+    
+    def load_finetuned(self, path: str = "models/fine_tuned_bert"):
+        try:
+            self.classifier_tokenizer = BertTokenizer.from_pretrained(path)
+            self.classifier = AutoModelForSequenceClassification.from_pretrained(path)
+            self.classifier.to(self.device)
+            self.classifier.eval()
+            return True
+        except Exception as e:
+            print(f"[WARN] Cannot load fine-tuned model from {path}: {e}")
+            return False
+
+    def predict_with_classifier(self, texts):
+        if self.classifier is None or self.classifier_tokenizer is None:
+            raise RuntimeError("Fine-tuned classifier is not loaded")
+
+        processed = [preprocess_text(t) for t in texts]
+        enc = self.classifier_tokenizer(
+            processed,
+            padding=True,
+            truncation=True,
+            max_length=256,
+            return_tensors="pt"
+        )
+        enc = {k: v.to(self.device) for k, v in enc.items()}
+        with torch.no_grad():
+            out = self.classifier(**enc)
+        logits = out.logits.cpu().numpy()  # shape (N, 1)
+        return logits
 
