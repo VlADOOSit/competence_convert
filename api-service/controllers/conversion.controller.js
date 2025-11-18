@@ -9,7 +9,6 @@ class ConversionController {
                 return res.status(400).json({ message: "Invalid profileId" });
             }
 
-            // Перевіримо, що профіль існує
             const profile = await getJobProfileById(profileId);
             if (!profile) {
                 return res
@@ -26,7 +25,6 @@ class ConversionController {
             const htmlBuffer = req.file.buffer;
             const htmlContent = htmlBuffer.toString("utf8");
 
-            // 1) Витягуємо чистий текст із HTML
             const plainText = extractTextFromHtml(htmlContent);
             if (!plainText) {
                 return res
@@ -34,7 +32,6 @@ class ConversionController {
                     .json({ message: "Cannot extract text from HTML" });
             }
 
-            // 2) Викликаємо ML-сервіс для конвертації
             const predictions = await getConvertedCompetenciesFromMl(
                 plainText,
                 10
