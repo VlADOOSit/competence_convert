@@ -1,0 +1,53 @@
+version: "3.9"
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: competence_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword     # заміни на свій
+      MYSQL_DATABASE: competence_db
+      MYSQL_USER: appuser
+      MYSQL_PASSWORD: apppassword
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      # ініціалізація схеми БД
+      - ./api-service/db/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+
+  ml-service:
+    build:
+      context: ./ml-bert-service
+    container_name: ml-service
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    volumes:
+      # щоб fine-tuned модель зберігалась між перезапусками
+      - ./ml-bert-service/models:/app/models
+
+  api:
+    build:
+      context: ./api-service
+    container_name: api-service
+    restart: unless-stopped
+    ports:
+      - "3001:3001"
+    env_file:
+      - ./api-service/.env
+    environment:
+      # перекриваємо, щоб у контейнері точно були правильні адреси
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_USER: appuser
+      DB_PASSWORD: apppassword
+      DB_NAME: competence_db
+      ML_SERVICE_URL: http://ml-service:8000
+    depends_on:
+      - db
+      - ml-service
+
+volumes:
+  db_data:
