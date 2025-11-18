@@ -54,6 +54,7 @@ def predict(req: PredictRequest):
                 "competency_id": m["competency_id"],
                 "competency_code": m["competency_code"],
                 "competency_name": m["competency_name"],
+                "competence"
                 "level_id": m["level_id"],
                 "level": m["level"],
                 "level_description": m["level_description"],
@@ -78,6 +79,7 @@ def predict(req: PredictRequest):
             "competency_id": m["competency_id"],
             "competency_code": m["competency_code"],
             "competency_name": m["competency_name"],
+            "competency_description": m["competency_description"],
             "level_id": m["level_id"],
             "level": m["level"],
             "level_description": m["level_description"],

@@ -1,5 +1,5 @@
 const mysql = require("mysql2");
-const configPath = './db/config.json';
+const configPath = "./db/config.json";
 
 dotenv.config();
 

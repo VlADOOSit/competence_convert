@@ -4,8 +4,7 @@ const cors = require("cors");
 
 const ErrorHandler = require("./middlewares/errorHandler");
 
-const TestRouter = require("./routes/test.router");
-
+const ConversionRouter = require("./routes/conversion.router");
 
 const app = express();
 
@@ -13,7 +12,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api/test", TestRouter);
-
+app.use("/api/conversion", ConversionRouter);
 
 app.use(ErrorHandler);
 
